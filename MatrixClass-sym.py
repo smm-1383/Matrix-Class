@@ -27,6 +27,9 @@ class Matrix:
     def invert(self):
         return Matrix.from_sympy(sp.Matrix(self.rows).inv())
 
+    def det(self):
+        return sp.Matrix(self.rows).det()
+
     def get_row(self, row):
         return Matrix(self.rows[row])
 
