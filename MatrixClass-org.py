@@ -77,6 +77,20 @@ class Matrix:
             return False
         return inv
 
+    def det(self):
+        mat = self.rows
+        if len(mat) == 2:
+            return mat[1][1] * mat[0][0] - mat[0][1] * mat[1][0]
+        row = mat.pop(0)
+        s = 0
+        for c, i in enumerate(row):
+            nmat = mat.copy()
+            nmat = [*zip(*nmat)]
+            del nmat[c]
+            s += Matrix(*[*zip(*nmat)]).det() * i * (-1) ** c
+        return s
+
+
     def get_row(self, row):
         return Matrix(self.rows[row])
 
